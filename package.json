@@ -33,7 +33,7 @@
   "description": "My webpack project",
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
-    "build:dev": "webpack --mode=development",
+    "build:next": "next build",
     "start": "webpack serve",
     "next": "next"
   }
