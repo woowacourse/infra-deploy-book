@@ -35,6 +35,6 @@
     "build": "webpack --mode=production --node-env=production",
     "build:next": "next build",
     "start": "webpack serve",
-    "next": "next"
+    "next": "next -p 8080"
   }
 }
