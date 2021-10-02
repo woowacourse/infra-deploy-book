@@ -1,5 +1,5 @@
 {
-  "name": "my-webpack-project",
+  "name": "ella-deploy-book",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/HyuuunjuKim/a11y-airline.git",
@@ -30,11 +30,9 @@
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.3.0"
   },
-  "description": "My webpack project",
+  "description": "ella-deploy-book",
   "scripts": {
-    "build": "webpack --mode=production --node-env=production",
-    "build:next": "next build",
-    "start": "webpack serve",
-    "next": "next -p 8080"
+    "build": "next build",
+    "start": "next -p 8080"
   }
 }
