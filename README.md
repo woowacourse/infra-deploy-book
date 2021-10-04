@@ -27,6 +27,6 @@
 
 ## 3. 마크업한 결과물을 배포하고 그 과정 기록하기
 
-- [과정 정리](https://subdued-credit-f97.notion.site/Deploy-065a4d084e6648cc948135e3efc42a94)
+- [과정 정리](https://mkitigy.notion.site/Deploy-065a4d084e6648cc948135e3efc42a94)
 - [애플 스토어 (CloudFront + S3)](https://d2r677oxbgul1b.cloudfront.net/)
 - [항공사 웹사이트 (Next.js + EC2)](http://ec2-13-209-4-51.ap-northeast-2.compute.amazonaws.com/)
