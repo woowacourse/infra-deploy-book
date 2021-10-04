@@ -32,7 +32,7 @@
 - **장점**
     - `firebase deploy` 명령어 하나도 바로 배포할 수 있다.
     - 초기 설정할 때, Github Actions 설정을 자동으로 해준다.
-    - `[web.app](http://web.app)` 서브도메인을 사용할 수 있다.
+    - [`web.app`](http://web.app) 서브도메인을 사용할 수 있다.
 - **단점**
     - 프로젝트에 Firebase 관련 설정 파일이 생성된다.
     - Firebase 프로젝트를 생성하고 설정하는 과정이 조금 번거롭다.
