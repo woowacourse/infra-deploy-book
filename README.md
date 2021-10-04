@@ -133,5 +133,9 @@
 ## 3. 마크업한 결과물을 배포하고 그 과정 기록하기
 
 ### 애플 웹 사이트 S3 + Cloudfront로 배포하기
+- [🚀 데모 페이지](https://d2hr81hbrr85iv.cloudfront.net/)
+- [📖 읽으러 가기](./deploy-with-s3-and-cloudfront.md)
 
 ### nextjs로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포하기
+- [🚀 데모 페이지](https://a11y.puterism.com/)
+- [📖 읽으러 가기](./deploy-next-js-with-ec2.md)
