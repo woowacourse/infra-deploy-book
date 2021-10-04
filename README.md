@@ -1,14 +1,14 @@
 <p align="middle" >
   <img width="150px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png"/>
 </p>
-<h2 align="middle">OO 배포 가이드북</h2>
+<h2 align="middle">그루밍의 배포 가이드북</h2>
 <p align="middle">서비스 성격에 따른 배포 전략</p>
 <p align="middle">
   <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
-# OO의 deploy book
+# 그루밍의 deploy book
 
 ## 1. 나의 배포 경험
 
