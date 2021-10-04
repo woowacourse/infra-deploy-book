@@ -1,23 +1,23 @@
-<p align="middle" >
-  <img width="150px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png"/>
-</p>
-<h2 align="middle">OO 배포 가이드북</h2>
-<p align="middle">서비스 성격에 따른 배포 전략</p>
-<p align="middle">
-  <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
-  <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
-</p>
+# 하루의 deploy book
 
-# OO의 deploy book
+<br />
 
 ## 1. 나의 배포 경험
 
-## 2. AWS에서 SSR, CSR에 따른 배포 전략
+- **github pages:** 레벨1, 2의 간단한 미션 배포
+- **Netlify:** 유튜브 API 키 숨기는 서버 배포
+- **AWS EC2:** 레벨3, 4 팀프로젝트 배포, 애플 마크업 미션
+- **AWS S3 + CloudFront:** 성능 미션, 항공사 웹접근성 미션
 
-- CSR이 CDN배포가 권장되는 이유
-- EC2 배포가 가지는 특징
+<br />
 
-## 3. 마크업한 결과물을 배포하고 그 과정 기록하기
+## 2. SSR/CSR 배포 전략
 
-- 애플웹사이트 S3+Cloudfront로 배포하기
-- nextjs로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포하기
+- ### CSR - S3 + CloudFront
+
+  - 정리: [**AWS 배포 가이드북 - S3 + CloudFront 편**](https://365kim.tistory.com/153)
+  - 예제: [항공사 유닛 페이지 3개]()
+
+- ### SSR - EC2
+  - 정리: [**AWS 배포 가이드북 - EC2 편**](https://365kim.tistory.com/151)
+  - 예제: [배포 - 애플 랜딩 페이지]()
