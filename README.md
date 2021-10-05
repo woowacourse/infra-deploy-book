@@ -225,6 +225,10 @@ pm2 start yarn --name "{원하는 이름}" -- start
     > letsencrypt : 무료 SSL 인증을 제공하는 곳 (https://letsencrypt.org/)
 
   ```json
+  /* 도커가 없는 경우 설치 */
+  sudo apt install docker.io
+  
+  /* letsencrypt 실행 */
   sudo docker run -it --rm --name certbot \\
   	-v '/etc/letsencrypt:/etc/letsencrypt' \\
   	-v '/var/lib/letsencrypt:/var/lib/letsencrypt' \\
