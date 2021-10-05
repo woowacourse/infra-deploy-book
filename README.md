@@ -77,3 +77,87 @@
    - <https://d2zwx80u2kt9kg.cloudfront.net/login> : 존재하지 않는 path에 접근 시 index.html이 렌더링되는지 확인
 
 ### nextjs로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포하기
+#### 1. 기존의 a11y-airline 을 next.js 로 마이그레이션한다
+
+```sh
+npx create-next-app
+```
+
+#### 2. EC2 콘솔로 접근하기
+
+##### 로그인
+```sh
+$ chmod 400 [pem파일명]
+$ ssh -i [pem파일명] ubuntu@[SERVER_IP]
+```
+
+##### 비밀번호 변경
+```sh
+$ sudo passwd ubuntu
+```
+
+
+##### nvm 설치
+```
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash  # nvm 설치
+```
+
+※ zsh을 기본 셸으로 쓰는 경우에, 환경변수 NVM_DIR 이 shell 실행시 등록되도록 .zshrc 에 추가
+- nvm 설치시 자동으로 .bashrc 에 추가된다
+```
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+
+##### node.js lts 설치
+
+```sh
+$ nvm install --lts
+$ nvm use --lts
+```
+
+※ troubleshooting
+nvm install, nvm use 명령어 입력시 `manpath: can't set the locale; make sure $LC_* and $LANG are correct` 라는 에러 메시지가 계속 출력되었다.
+
+`.zshrc`에 다음의 명령어를 추가한 후 `locale`으로 검증하였다
+
+```shell
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+```
+
+node.js 를 설치하면 npm 도 저절로 설치된다
+
+```sh
+$ which node
+/home/ubuntu/.nvm/versions/node/v14.18.0/bin/node
+
+$ which npm
+/home/ubuntu/.nvm/versions/node/v14.18.0/bin/npm
+
+$ npm --version
+6.14.15
+```
+
+
+##### git clone
+```sh
+$ git clone https://github.com/bigsaigon333/a11y-airline.git
+
+$ cd a11y-airline
+
+$ npm install
+
+$ npm run build
+
+$ nohup npx next start -p 8080 & disown # 8080 port로 background
+```
+
+※ background 에서 job을 실행시킨 채로 shell을 종료하면, shell에서 실행중인 모든 job 에 HUP signal을 보낸다.
+
+HUP signal을 받으면 job이 종료되는데,
+
+`nohup npx next start -p 8080 & disown`
+으로 실행시키면 해당 프로세스는 HUP signal을 무시하여서, 셸 종료하여도 background에서 계속해서 동작할 수 있다.
