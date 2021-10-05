@@ -36,5 +36,5 @@
 
 #### 항공사 웹사이트
 
-- Next.js로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포한 내용 기록하기 (아직 작성중입니다.. ㅜㅜ)
+- [Next.js로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포한 내용 기록하기](https://mingule.tistory.com/71)
 - [배포된 사이트](http://ec2-3-36-103-153.ap-northeast-2.compute.amazonaws.com/)
