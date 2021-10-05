@@ -12,6 +12,12 @@
 
 ## 1. 나의 배포 경험
 
+- Github Page
+- Netlify
+- Heroku
+- AWS S3 + Cloudfront
+- AWS EC2
+
 ## 2. AWS에서 SSR, CSR에 따른 배포 전략
 
 - CSR이 CDN배포가 권장되는 이유
@@ -50,5 +56,22 @@
   7. 기본값 루트 객체 index.html 설정 및 배포 생성
 
      - ![image](https://user-images.githubusercontent.com/44419181/134806090-ad8c8088-e4e6-4b0f-9438-03b89e23b076.png)
+
+  - ci/cd pipeline 구축하기
+
+    1. aws access key 발급 받기
+
+       - ![image](https://user-images.githubusercontent.com/44419181/134807702-d779d327-fb05-49f2-ad82-99379916dc40.png)
+       - ![image](https://user-images.githubusercontent.com/44419181/134807740-fd8243bb-8752-4d75-a9f1-d70b6de79495.png)
+
+    2. github secrets에 access key, secret access key 저장
+
+       - ![image](https://user-images.githubusercontent.com/44419181/134809761-5e5569f0-343e-4389-b963-ce95953fac62.png)
+
+    3. github actions yaml 파일 설정
+
+       - ![image](https://user-images.githubusercontent.com/44419181/134809874-bf8bfa91-6eb5-4e85-95a4-67f148f7b55a.png)
+
+       - 4번째 인자가 source, 5번째 인자가 target으로 source 디렉토리의 파일들과 target 디렉토리를 동기화한다.
 
 - nextjs로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포하기
