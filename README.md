@@ -168,7 +168,7 @@ yarn add next react react-dom
 
 #### 배포하기 
 
-1. https 처리를 위해 nextjs 커스텀서버를 구성해줍니다. ssl인증서는 개발목적이라면 openssl을 이용하세요. (커스텀서버는 nextjs의 성능최적화  serverless functions, Automatic Static Optimization. 등을 하지못합니다. 이를 위해서는 리버스 프록시 서버를 구성해야합니다.)
+1. https 처리를 위해 nextjs 커스텀서버를 구성해줍니다. ssl인증서는 개발목적이라면 openssl을 이용하세요. (커스텀서버는 nextjs의 성능최적화  serverless functions, Automatic Static Optimization. 등을 하지못합니다. 이를 위해서는 게이트웨이 서버를 구성해야합니다.)
 
 ![image](https://user-images.githubusercontent.com/44419181/136057484-f40a85c7-394a-4d8e-bb4c-e60923f5d35f.png)
 
