@@ -281,4 +281,8 @@ server {
         }
 }
 ```
+* Nginx 재시작
+```
+sudo service nginx restart
+```
 
