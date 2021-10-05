@@ -85,6 +85,107 @@
 
        - 4번째 인자가 source, 5번째 인자가 target으로 source 디렉토리의 파일들과 target 디렉토리를 동기화한다.
 
-- nextjs로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포하기
+### nextjs로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포하기
 
-  - 작성 중..
+#### EC2 인스턴스 만들고 접속하기.
+
+1. aws ec2에 접속한다.
+2. 인스턴스 시작을 누른다
+    ![image](https://user-images.githubusercontent.com/44419181/136021830-bfddeb4d-fe68-464a-baf3-fe1e22ff9097.png)
+3. ubuntu 20.04를 선택한다.
+    ![image](https://user-images.githubusercontent.com/44419181/136021903-04f36c77-8687-4e71-9ffb-4b5275159f93.png)
+4. 성능에 따라 다르나 지금은 성능을 요하지 않는 과제용 서버를 만들 것이므로, t2 micro를 선택한다.
+    ![image](https://user-images.githubusercontent.com/44419181/136022196-865f6984-232f-4f7a-af93-873693a31d32.png)
+5. 인스턴스 세부 정보 구성에서 인스턴스가 속할 네트워크를 지정해준다. 외부에서 접속하는 것을 가능하게 만들기 위해 퍼블릭 IP 자동 할당을 활성화해준다. 
+    ![image](https://user-images.githubusercontent.com/44419181/136022554-b6bfa3ef-c733-4f6c-b6ab-db69aa8229a0.png)
+6. 스토리지는 필요한 만큼 여유있게 설정해준다
+   ![image](https://user-images.githubusercontent.com/44419181/136022975-5a0e36ec-30bb-4dd7-ab0f-743724cfdafc.png)
+7. 인스턴스에 붙일 태그를 추가한다. Name은 인스턴스의 별칭이 된다.
+   ![image](https://user-images.githubusercontent.com/44419181/136023186-a048f0af-fdfd-4259-892e-8c24748059cb.png)
+8. 보안 그룹을 구성한다. 웹서버를 배포할 것이므로, 80/443포트를 열고, 원격접속을 위해 22포트를 연다.
+   ![image](https://user-images.githubusercontent.com/44419181/136023601-fbfbfe3a-9824-40c8-863b-2f3b996f58ee.png)
+9. 시작하기를 누르면, 원격접속을 위해 키를 발급해준다. 기존의 키를 사용할 수도 있다.
+  ![image](https://user-images.githubusercontent.com/44419181/136023828-1f1bd2b7-c087-4c58-843b-1625842ef9e2.png)
+10. 태그에 추가했던 Name을 검색해보면 인스턴스가 생성된 것을 확인할 수 있다.
+
+    ![image](https://user-images.githubusercontent.com/44419181/136024915-4665cd3f-7625-4321-b2fa-8d4c525fdd36.png)
+    
+11. 연결을 누르면, 인스턴스에 원격으로 접속할 수 있는 방법이 나열된다.
+
+  ![image](https://user-images.githubusercontent.com/44419181/136025136-f23b89c3-69de-4fff-94f9-bfd177dae23a.png)
+
+12. ssh -i [pem파일] [계정이름:ubuntu]@[ip] 를 입력하면 인스턴스에 접근할 수 있게된다.
+  
+  ![image](https://user-images.githubusercontent.com/44419181/136026232-96001290-0ac5-48bb-aecd-3f2a2ca2f849.png)
+
+
+#### 웹접근성 과제 React 프로젝트 Next.js로 포팅하기
+
+1. next를 의존성 설치한다. 
+```sh
+npm install next react react-dom
+# or
+yarn add next react react-dom
+```
+
+2. npm/yarn 스크립트를 다음과 같이 변경한다.
+
+```sh
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint"
+}
+```
+
+3. webpack 관련 디펜던시들을 package.json에서 확인한 후 제거한다.
+
+  변경 후
+  ![image](https://user-images.githubusercontent.com/44419181/136038459-e704f8cc-696b-4cab-9a5c-5daea99d8ed6.png)
+
+4. 디렉토리 구성 및 페이지 컴포넌트를 next.js에 맞게 변경한다.
+
+![image](https://user-images.githubusercontent.com/44419181/136038725-3e848ebc-1f50-46f7-8e62-04b8c6476a2b.png)
+
+
+#### 배포하기 
+
+1. https 처리를 위해 nextjs 커스텀서버를 구성해줍니다. ssl인증서는 개발목적이라면 openssl을 이용하세요.
+
+![image](https://user-images.githubusercontent.com/44419181/136057484-f40a85c7-394a-4d8e-bb4c-e60923f5d35f.png)
+
+2. github 저장소에 push하고, ssh를 통해 인스턴스에 접속해 프로젝트를 클론합니다.
+
+3. 인증서를 scp 등의 명령어로 인스턴스의 /etc/ssl 디렉토리로 옮깁니다.
+
+3. node.js, npm, yarn을 설치합니다
+
+```sh
+sudo apt update
+sudo apt i nodejs npm
+sudo npm i -g n yarn
+sudo n stable
+```
+
+4. 의존성 설치를 진행합니다.
+
+```sh
+yarn
+```
+
+5. nextjs 어플리케이션을 빌드합니다
+
+```sh
+yarn build
+```
+
+6. 서버를 실행합니다. nohup은 hangup 시그널(logout시 발생)에도 종료되지 않도록하는 프로그램입니다. 마지막의 &는 백그라운드에서 실행하라는 키워드입니다.
+
+```sh
+ sudo nohup node server.js &
+```
+
+
+7. 의도한대로 동작합니다.
+![image](https://user-images.githubusercontent.com/44419181/136058032-131111e2-444c-453c-8c31-d9db18d2b75a.png)
