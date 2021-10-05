@@ -91,21 +91,37 @@
 
 1. aws ec2에 접속한다.
 2. 인스턴스 시작을 누른다
-    ![image](https://user-images.githubusercontent.com/44419181/136021830-bfddeb4d-fe68-464a-baf3-fe1e22ff9097.png)
+   
+   ![image](https://user-images.githubusercontent.com/44419181/136021830-bfddeb4d-fe68-464a-baf3-fe1e22ff9097.png)
+
 3. ubuntu 20.04를 선택한다.
+    
     ![image](https://user-images.githubusercontent.com/44419181/136021903-04f36c77-8687-4e71-9ffb-4b5275159f93.png)
+
 4. 성능에 따라 다르나 지금은 성능을 요하지 않는 과제용 서버를 만들 것이므로, t2 micro를 선택한다.
+    
     ![image](https://user-images.githubusercontent.com/44419181/136022196-865f6984-232f-4f7a-af93-873693a31d32.png)
+
 5. 인스턴스 세부 정보 구성에서 인스턴스가 속할 네트워크를 지정해준다. 외부에서 접속하는 것을 가능하게 만들기 위해 퍼블릭 IP 자동 할당을 활성화해준다. 
-    ![image](https://user-images.githubusercontent.com/44419181/136022554-b6bfa3ef-c733-4f6c-b6ab-db69aa8229a0.png)
+   
+   ![image](https://user-images.githubusercontent.com/44419181/136022554-b6bfa3ef-c733-4f6c-b6ab-db69aa8229a0.png)
+
 6. 스토리지는 필요한 만큼 여유있게 설정해준다
+   
    ![image](https://user-images.githubusercontent.com/44419181/136022975-5a0e36ec-30bb-4dd7-ab0f-743724cfdafc.png)
+
 7. 인스턴스에 붙일 태그를 추가한다. Name은 인스턴스의 별칭이 된다.
+   
    ![image](https://user-images.githubusercontent.com/44419181/136023186-a048f0af-fdfd-4259-892e-8c24748059cb.png)
+
 8. 보안 그룹을 구성한다. 웹서버를 배포할 것이므로, 80/443포트를 열고, 원격접속을 위해 22포트를 연다.
-   ![image](https://user-images.githubusercontent.com/44419181/136023601-fbfbfe3a-9824-40c8-863b-2f3b996f58ee.png)
+  
+  ![image](https://user-images.githubusercontent.com/44419181/136023601-fbfbfe3a-9824-40c8-863b-2f3b996f58ee.png)
+
 9. 시작하기를 누르면, 원격접속을 위해 키를 발급해준다. 기존의 키를 사용할 수도 있다.
+
   ![image](https://user-images.githubusercontent.com/44419181/136023828-1f1bd2b7-c087-4c58-843b-1625842ef9e2.png)
+
 10. 태그에 추가했던 Name을 검색해보면 인스턴스가 생성된 것을 확인할 수 있다.
 
     ![image](https://user-images.githubusercontent.com/44419181/136024915-4665cd3f-7625-4321-b2fa-8d4c525fdd36.png)
@@ -142,6 +158,7 @@ yarn add next react react-dom
 3. webpack 관련 디펜던시들을 package.json에서 확인한 후 제거한다.
 
   변경 후
+  
   ![image](https://user-images.githubusercontent.com/44419181/136038459-e704f8cc-696b-4cab-9a5c-5daea99d8ed6.png)
 
 4. 디렉토리 구성 및 페이지 컴포넌트를 next.js에 맞게 변경한다.
@@ -188,4 +205,5 @@ yarn build
 
 
 7. 의도한대로 동작합니다.
+8. 
 ![image](https://user-images.githubusercontent.com/44419181/136058032-131111e2-444c-453c-8c31-d9db18d2b75a.png)
