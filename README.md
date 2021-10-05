@@ -205,5 +205,5 @@ yarn build
 
 
 7. 의도한대로 동작합니다.
-8. 
-![image](https://user-images.githubusercontent.com/44419181/136058032-131111e2-444c-453c-8c31-d9db18d2b75a.png)
+
+![image](https://user-images.githubusercontent.com/44419181/136061190-5974a2df-d3d3-4633-9335-9e33e55c90b7.png)
