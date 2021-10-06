@@ -1,7 +1,7 @@
 <p align="middle" >
   <img width="150px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png"/>
 </p>
-<h2 align="middle">OO 배포 가이드북</h2>
+<h2 align="middle">피터의 배포 가이드북</h2>
 <p align="middle">서비스 성격에 따른 배포 전략</p>
 <p align="middle">
   <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
@@ -11,17 +11,21 @@
 # OO의 deploy book
 
 ## 1. 나의 배포 경험
+
 - Netlify
+
   - 우아한테크코스에서 미션 페이지를 배포하기 위한 용도로 자주 사용
   - 복잡한 세팅 없이 간단하게 정적 페이지를 배포할 수 있다는 장점
   - 깃헙과 연동하여 자동 배포 가능
-  - 기본적으로 자체적인 CDN이 제공되지만, 커스텀이 불가능
+  - 기본적으로 자체적인 CDN이 제공된다
 
 - Github Pages
+
   - 마찬가지로 미션을 배포하거나, 블로그를 배포할 때도 사용했었음
   - Netlify를 접한 이후에는 거의 사용하지 않게 됨
-  
+
 - AWS S3 + Cloudfront
+
   - 우아한테크코스 프로젝트(Babble)를 배포하는 데에 사용
   - 마찬가지로 정적 페이지 배포에 사용
   - Netlify를 사용할 때보다 더 세부적으로 세팅 가능(캐시, CDN 설정 등)
@@ -30,6 +34,7 @@
 
 - AWS EC2
   - 별도의 서버 로직을 수행할 수 있다
+    - 단순히 저장소 역할만 하는 S3와는 다르게, EC2는 가상 컴퓨터이기 때문에 일반 컴퓨터에서 애플리케이션을 실행하는 것과 마찬가지로 사용자가 EC2 내부에서 서버 애플리케이션을 실행시킬 수 있다.
   - S3와 달리, EC2 인스턴스를 밑바닥부터 세부적으로 설정 가능하다
   - 우아한테크코스 SSR 배포 미션에 사용
   - 진입 장벽이 높다
@@ -48,7 +53,7 @@
 ## 3. 마크업한 결과물을 배포하고 그 과정 기록하기
 
 - 애플웹사이트 S3+Cloudfront로 배포하기
-  - [애플 클론 코딩 사이트](d2y55jdkou1vjp.cloudfront.net)
+  - [애플 클론 코딩 사이트](https://d2y55jdkou1vjp.cloudfront.net/)
   - [S3 + Cloudfront로 배포하기](https://iborymagic.tistory.com/95)
 - nextjs로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포하기
   - [항공사 웹사이트](http://ec2-3-34-137-30.ap-northeast-2.compute.amazonaws.com/)
