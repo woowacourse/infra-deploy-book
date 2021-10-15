@@ -1,20 +1,13 @@
-<p align="middle" >
-  <img width="150px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png"/>
-</p>
-<h2 align="middle">OO 배포 가이드북</h2>
-<p align="middle">서비스 성격에 따른 배포 전략</p>
-<p align="middle">
-  <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
-  <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
-</p>
+# 동동의 deploy book
 
-# OO의 deploy book
+서비스 성격에 따른 배포 전략
 
 ## 1. 나의 배포 경험
 
 ## 2. AWS에서 SSR, CSR에 따른 배포 전략
 
 - CSR이 CDN배포가 권장되는 이유
+
 - EC2 배포가 가지는 특징
 
 ## 3. 마크업한 결과물을 배포하고 그 과정 기록하기
@@ -76,7 +69,12 @@
    - <http://d2zwx80u2kt9kg.cloudfront.net> : HTTPS 로 redirect 되는지 확인
    - <https://d2zwx80u2kt9kg.cloudfront.net/login> : 존재하지 않는 path에 접근 시 index.html이 렌더링되는지 확인
 
+7. 추후 배포시
+
+- CloudFront Cache Invalidation 이 필요하다
+
 ### nextjs로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포하기
+
 #### 1. 기존의 a11y-airline 을 next.js 로 마이그레이션한다
 
 ```sh
@@ -86,25 +84,29 @@ npx create-next-app
 #### 2. EC2 콘솔로 접근하기
 
 ##### 로그인
+
 ```sh
-$ chmod 400 [pem파일명]
-$ ssh -i [pem파일명] ubuntu@[SERVER_IP]
+chmod 400 [pem파일명]
+ssh -i [pem파일명] ubuntu@[SERVER_IP]
 ```
 
 ##### 비밀번호 변경
-```sh
-$ sudo passwd ubuntu
-```
 
+```sh
+sudo passwd ubuntu
+```
 
 ##### nvm 설치
-```
-$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash  # nvm 설치
+
+```shell
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash  # nvm 설치
 ```
 
 ※ zsh을 기본 셸으로 쓰는 경우에, 환경변수 NVM_DIR 이 shell 실행시 등록되도록 .zshrc 에 추가
+
 - nvm 설치시 자동으로 .bashrc 에 추가된다
-```
+
+```shell
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -113,8 +115,8 @@ export NVM_DIR="$HOME/.nvm"
 ##### node.js lts 설치
 
 ```sh
-$ nvm install --lts
-$ nvm use --lts
+nvm install --lts
+nvm use --lts
 ```
 
 ※ troubleshooting
@@ -141,23 +143,32 @@ $ npm --version
 6.14.15
 ```
 
-
 ##### git clone
+
 ```sh
-$ git clone https://github.com/bigsaigon333/a11y-airline.git
+git clone https://github.com/bigsaigon333/a11y-airline.git
 
-$ cd a11y-airline
+cd a11y-airline
 
-$ npm install
+npm install
 
-$ npm run build
+npm run build
 
-$ nohup npx next start -p 8080 & disown # 8080 port로 background
+nohup npx next start -p 8080 & disown
 ```
 
 ※ background 에서 job을 실행시킨 채로 shell을 종료하면, shell에서 실행중인 모든 job 에 HUP signal을 보낸다.
 
-HUP signal을 받으면 job이 종료되는데,
+HUP signal을 받으면 job이 종료되는데, 아래의 명령어로 실행시키면 실행된 프로세스가  HUP signal을 무시하여서, 셸 종료하여도 background에서 계속해서 동작할 수 있다.
 
 `nohup npx next start -p 8080 & disown`
-으로 실행시키면 해당 프로세스는 HUP signal을 무시하여서, 셸 종료하여도 background에서 계속해서 동작할 수 있다.
+
+##### why 8080?
+
+EC2 보안그룹 sg-08485b9cab6facf97 (SG-DEFAULT)에 의해서 3000번 port는 막혀있다. 8080포트만 열려있으므로, 8080으로 띄운다.
+
+<https://docs.aws.amazon.com/ko_kr/codebuild/latest/userguide/build-env-ref-background-tasks.html>
+
+##### port forwarding
+
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
