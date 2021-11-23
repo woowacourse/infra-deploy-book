@@ -63,10 +63,10 @@
 #### 배포과정
 1. S3 버킷 생성
   - 버킷 이름 및 지역 설정
-     ![스크린샷 2021-11-23 오후 12 46 39](https://user-images.githubusercontent.com/57767891/142968585-7c72bf88-3c40-47eb-b5c0-b1b2e58188bd.png)
+  ![스크린샷 2021-11-23 오후 12 46 39](https://user-images.githubusercontent.com/57767891/142968585-7c72bf88-3c40-47eb-b5c0-b1b2e58188bd.png)
   - 퍼블릭 액세스 차단.
   - 이 버킷에는 CloudFront를 통해서만 접근할 예정이기 때문에 다른 모든 접근을 제한한다.
-      ![스크린샷 2021-11-23 오후 12 46 50](https://user-images.githubusercontent.com/57767891/142968599-e3e7957a-bc47-4b00-bd99-16b1daf3c238.png)
+  ![스크린샷 2021-11-23 오후 12 46 50](https://user-images.githubusercontent.com/57767891/142968599-e3e7957a-bc47-4b00-bd99-16b1daf3c238.png)
   - 버킷 생성 및 확인
       <img width="1082" alt="스크린샷 2021-11-23 오후 12 56 52" src="https://user-images.githubusercontent.com/57767891/142969310-4785e824-39ec-4d6f-a4ba-af9fac5294f3.png">
 
@@ -74,8 +74,8 @@
 
 2. S3에 정적리소스 추가
   - 생성된 S3버킷에 호스팅할 리소스들을 추가한다.
-      ![스크린샷 2021-11-23 오후 1 13 26](https://user-images.githubusercontent.com/57767891/142970320-c9cf3a59-5cd8-4879-bc82-bea4c1dd7b45.png)
-      ![스크린샷 2021-11-23 오후 1 15 41](https://user-images.githubusercontent.com/57767891/142970460-790d36ce-c836-48bf-a8c3-1025a118cd3e.png)
+  ![스크린샷 2021-11-23 오후 1 13 26](https://user-images.githubusercontent.com/57767891/142970320-c9cf3a59-5cd8-4879-bc82-bea4c1dd7b45.png)
+  ![스크린샷 2021-11-23 오후 1 15 41](https://user-images.githubusercontent.com/57767891/142970460-790d36ce-c836-48bf-a8c3-1025a118cd3e.png)
 
 
 <br>
@@ -83,32 +83,34 @@
 3. CloudFront 배포 생성
   - 원본 도메인 설정
   - 돋보기 버튼을 눌러 조금 전 생성한 S3 버킷의 도메인을 찾는다.
-  <img width="790" alt="스크린샷 2021-11-23 오후 12 59 28" src="https://user-images.githubusercontent.com/57767891/142969485-fda2167a-7645-42eb-8b5d-5b4048bb46e5.png">
+    <img width="790" alt="스크린샷 2021-11-23 오후 12 59 28" src="https://user-images.githubusercontent.com/57767891/142969485-fda2167a-7645-42eb-8b5d-5b4048bb46e5.png">
   - 우리는 조금 전 S3 버킷에 대한 퍼블릭 액세스를 제한했다. 이는 CloudFront를 통해서만 접근하도록 하기 위함인데, 이를 가능하게 하는 것이 바로 OAI(Origin Access Identity)이다. 즉, 가상의 사용자를 만들고 id를 부여해 이 id를 가지고 있는 사람만 접근하게 하는 방법이다. 이를 위해 기존에 생성된 OAI를 사용하거나 새로 생성한다.
-  ![스크린샷 2021-11-23 오후 1 05 00](https://user-images.githubusercontent.com/57767891/142969773-1b144cdb-58e6-40a0-9903-bcdd0809fa28.png)
-  <br>
-  ![스크린샷 2021-11-23 오후 1 06 17](https://user-images.githubusercontent.com/57767891/142969832-c8206b28-2177-4b74-b621-85088b59aa7f.png)
+    <img width="790" src="https://user-images.githubusercontent.com/57767891/142969773-1b144cdb-58e6-40a0-9903-bcdd0809fa28.png">
+    <br>
+    <img width="790" src="https://user-images.githubusercontent.com/57767891/142969832-c8206b28-2177-4b74-b621-85088b59aa7f.png">
   - 필요에 따라 CloudFront가 원본 도메인으로 보내는 요청에 추가할 헤더를 설정할 수도 있다.
-  ![스크린샷 2021-11-23 오후 1 07 13](https://user-images.githubusercontent.com/57767891/142969901-0c1be5be-a831-48b8-a6f0-760282f96e37.png)
+    <img width="790" src="https://user-images.githubusercontent.com/57767891/142969901-0c1be5be-a831-48b8-a6f0-760282f96e37.png">
   - Origin Shield라는 기능도 제공한다. 말 그대로 Origin의 부하를 줄이기 위한 추가 캐싱 계층이다.
-  ![스크린샷 2021-11-23 오후 1 08 15](https://user-images.githubusercontent.com/57767891/142969962-415b2c5f-6387-4ead-8a35-9e2a9ac5ddda.png)
+    <img width="790" src="https://user-images.githubusercontent.com/57767891/142969962-415b2c5f-6387-4ead-8a35-9e2a9ac5ddda.png">
   - 추가로 캐싱 등 다른 설정들이 있지만 이번 배포 과정에서는 다루지 않도록 한다.
 
+
+<br>
 <br>
 
 4. 배포성공? 예외처리!
   - 성공적으로 배포했으니 CloudFront가 제공하는 도메인으로 접속해보자
   - 그러나 마주하게 되는 건 에러메시지
-    ![스크린샷 2021-11-23 오후 1 18 04](https://user-images.githubusercontent.com/57767891/142970638-609f8a66-032e-4955-81ac-3d7f41a88107.png)
+    <img width="790" alt="스크린샷 2021-11-23 오후 12 59 28" src="https://user-images.githubusercontent.com/57767891/142970638-609f8a66-032e-4955-81ac-3d7f41a88107.png">
   - S3는 정적리소스만을 호스팅하고 있기 때문에 정확하게 index.html을 요청하지 않으면 페이지를 받아 볼 수 없다.
   - 즉, 지금의 S3는 불친절한 음식점과 같다. 단순히 들어가 앉기만 해서는 기본 반찬은 커녕 메뉴판이나 물 한잔도 제공하지 않는다.
   - 우리는 해당 음식점에 들어가자 마자 뭐라도 나오길 바란다. 해당 도메인으로 접속했을 때 굳이 말하지 않아도 index.html이 보여지길 바란다. CloudFront설정을 통해 이를 해결할 수 있다.
-  - 우선 CloudFront 배포 인스턴스 -> 일반에서 설정 '편집'을 클릭한다.
-  ![스크린샷 2021-11-23 오후 1 41 09](https://user-images.githubusercontent.com/57767891/142972194-264190b4-37f3-4147-93df-c10791328485.png)
+  - 우선 CloudFront 배포 인스턴스 -> 일반에서 설정 '편집'을 클릭한다.<br>
+    <img width="790" src="https://user-images.githubusercontent.com/57767891/142972194-264190b4-37f3-4147-93df-c10791328485.png">
   - 그리고 기본값 루트 객체를 지정해준다. 기본값 루트 객체는 루트 URL(/) 접속시 제공할 객체를 의미한다. 이를 index.html로 지정한다.
-  ![스크린샷 2021-11-23 오후 1 41 40](https://user-images.githubusercontent.com/57767891/142972222-045287db-d4e8-4fd6-8d17-57280ddf12e1.png)
+    <img width="790" src="https://user-images.githubusercontent.com/57767891/142972222-045287db-d4e8-4fd6-8d17-57280ddf12e1.png">
   - 설정 저장 후 다시 배포가 되고나면 url에 index.html을 명시하지 않아도 원하는 페이지가 보여지는 것을 확인할 수 있다.
-  ![스크린샷 2021-11-23 오후 1 42 42](https://user-images.githubusercontent.com/57767891/142972285-40348441-da27-4629-b907-66c62a84e50a.png)
+    <img width="790" src="https://user-images.githubusercontent.com/57767891/142972285-40348441-da27-4629-b907-66c62a84e50a.png">
 
 <br>
 
