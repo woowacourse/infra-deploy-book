@@ -83,5 +83,6 @@ sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-po
 ### 5. 터미널 종료 후에도 서버 활성화
 
 ```shell
-npx pm2 start yarn --name "next" -- start
+npm install pm2@latest -g
+pm2 start --name "next" -w -i max yarn -- start
 ```
