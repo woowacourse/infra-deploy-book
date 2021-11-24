@@ -41,10 +41,10 @@ API 키를 가리기 위한 프록시 서버 용도로도 사용한 경험이 �
 
 ### 애플웹사이트 S3+Cloudfront로 배포하기
 
-- [배포가이드](S3_CLOUDFRONT.md)
-- 배포사이트
+- [배포가이드](./s3_cloudfront/README.md)
+- [배포사이트](https://d3ursj8gk94e93.cloudfront.net/)
 
 ### nextjs로 항공사 웹사이트 컴포넌트가 있는 유닛 페이지 3개를 만든 후 EC2로 배포하기
 
-- [배포가이드](./NEXTJS_EC2.md)
+- [배포가이드](./nextjs_ec2/README.md)
 - 배포사이트
