@@ -80,6 +80,8 @@ npx create-next-app projectName
 sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
 ```
 
+- EC2 인스턴스 > 네트워킹 탭 > 퍼블릭 IPv4 DNS 주소로 접속 시 배포된 사이트를 확인 가능
+
 ### 5. 터미널 종료 후에도 서버 활성화
 
 ```shell
